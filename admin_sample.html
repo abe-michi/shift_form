@@ -30,6 +30,13 @@
           <option value="003">
         </datalist>
       </div>
+      <div class="col-md-4">
+        <input list="dateList" type="text" id="filterDate" class="form-control" placeholder="日付で絞り込み（例: 7/1）">
+        <datalist id="dateList">
+          <option value="7/1">
+          <option value="7/2">
+        </datalist>
+      </div>
     </div>
 
     <table class="table table-bordered table-hover">
@@ -75,21 +82,25 @@
   <script>
     const nameFilter = document.getElementById('filterName');
     const idFilter = document.getElementById('filterID');
+    const dateFilter = document.getElementById('filterDate');
 
     function filterTable() {
       const name = nameFilter.value.toLowerCase();
       const id = idFilter.value.toLowerCase();
+      const date = dateFilter.value.toLowerCase();
       const rows = document.querySelectorAll('#shiftTable tr');
       rows.forEach(row => {
         const cells = row.querySelectorAll('td');
         const matchName = cells[1].textContent.toLowerCase().includes(name);
         const matchID = cells[0].textContent.toLowerCase().includes(id);
-        row.style.display = (matchName && matchID) ? '' : 'none';
+        const matchDate = cells[2].textContent.toLowerCase().includes(date);
+        row.style.display = (matchName && matchID && matchDate) ? '' : 'none';
       });
     }
 
     nameFilter.addEventListener('input', filterTable);
     idFilter.addEventListener('input', filterTable);
+    dateFilter.addEventListener('input', filterTable);
   </script>
 </body>
 </html>
