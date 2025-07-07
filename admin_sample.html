@@ -13,9 +13,19 @@
   <div class="container">
     <h2 class="mb-4">提出状況一覧（サンプル）</h2>
 
+    <div class="mb-3 row">
+      <div class="col-md-4">
+        <input type="text" id="filterName" class="form-control" placeholder="氏名で絞り込み">
+      </div>
+      <div class="col-md-4">
+        <input type="text" id="filterID" class="form-control" placeholder="従業員IDで絞り込み">
+      </div>
+    </div>
+
     <table class="table table-bordered table-hover">
       <thead>
         <tr>
+          <th>従業員ID</th>
           <th>氏名</th>
           <th>日付</th>
           <th>勤務パターン</th>
@@ -25,6 +35,7 @@
       </thead>
       <tbody id="shiftTable">
         <tr>
+          <td>001</td>
           <td>佐藤</td>
           <td>7/1（月）</td>
           <td>早番</td>
@@ -32,6 +43,7 @@
           <td>17:00</td>
         </tr>
         <tr>
+          <td>002</td>
           <td>鈴木</td>
           <td>7/1（月）</td>
           <td>遅番</td>
@@ -39,6 +51,7 @@
           <td>22:00</td>
         </tr>
         <tr>
+          <td>003</td>
           <td>田中</td>
           <td>7/2（火）</td>
           <td>フリー</td>
@@ -48,5 +61,25 @@
       </tbody>
     </table>
   </div>
+
+  <script>
+    const nameFilter = document.getElementById('filterName');
+    const idFilter = document.getElementById('filterID');
+
+    function filterTable() {
+      const name = nameFilter.value.toLowerCase();
+      const id = idFilter.value.toLowerCase();
+      const rows = document.querySelectorAll('#shiftTable tr');
+      rows.forEach(row => {
+        const cells = row.querySelectorAll('td');
+        const matchName = cells[1].textContent.toLowerCase().includes(name);
+        const matchID = cells[0].textContent.toLowerCase().includes(id);
+        row.style.display = (matchName && matchID) ? '' : 'none';
+      });
+    }
+
+    nameFilter.addEventListener('input', filterTable);
+    idFilter.addEventListener('input', filterTable);
+  </script>
 </body>
 </html>
