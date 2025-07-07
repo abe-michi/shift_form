@@ -35,6 +35,7 @@
       "遅番": { start: "14:00", end: "22:00" },
       "フリー": { start: "", end: "" }
     };
+
     const timeList = Array.from({length: ((22 - 9) * 4) + 1}, (_, i) => {
       const h = Math.floor((9*60 + i*15)/60);
       const m = (9*60 + i*15)%60;
@@ -58,12 +59,14 @@
           <div class="col">
             開始時刻：
             <select class="form-select start-select" data-date="${date}">
+              <option value="">選択</option>
               ${timeList.map(t => `<option value="${t}">${t}</option>`).join('')}
             </select>
           </div>
           <div class="col">
             終了時刻：
             <select class="form-select end-select" data-date="${date}">
+              <option value="">選択</option>
               ${timeList.map(t => `<option value="${t}">${t}</option>`).join('')}
             </select>
           </div>
@@ -72,16 +75,44 @@
       formArea.appendChild(block);
     }
 
+    function filterEndTime(startTime, endSel) {
+      const startIndex = timeList.indexOf(startTime);
+      endSel.innerHTML = '<option value="">選択</option>';
+      timeList.forEach((t, i) => {
+        if (i > startIndex) {
+          const opt = document.createElement('option');
+          opt.value = t;
+          opt.textContent = t;
+          endSel.appendChild(opt);
+        }
+      });
+    }
+
     document.querySelectorAll('.pattern-select').forEach(sel => {
       sel.addEventListener('change', e => {
         const date = e.target.dataset.date;
         const pattern = e.target.value;
         const startSel = document.querySelector(`.start-select[data-date="${date}"]`);
         const endSel = document.querySelector(`.end-select[data-date="${date}"]`);
+        startSel.value = "";
+        endSel.value = "";
         if (pattern && shiftPatterns[pattern]) {
-          startSel.value = shiftPatterns[pattern].start;
-          endSel.value = shiftPatterns[pattern].end;
+          if (shiftPatterns[pattern].start) startSel.value = shiftPatterns[pattern].start;
+          if (shiftPatterns[pattern].end) {
+            filterEndTime(startSel.value, endSel);
+            endSel.value = shiftPatterns[pattern].end;
+          }
         }
+      });
+    });
+
+    document.querySelectorAll('.start-select').forEach(sel => {
+      sel.addEventListener('change', e => {
+        const date = e.target.dataset.date;
+        const startTime = e.target.value;
+        const endSel = document.querySelector(`.end-select[data-date="${date}"]`);
+        filterEndTime(startTime, endSel);
+        endSel.value = "";
       });
     });
 
