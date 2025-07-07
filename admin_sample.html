@@ -13,12 +13,22 @@
   <div class="container">
     <h2 class="mb-4">提出状況一覧（サンプル）</h2>
 
-    <div class="mb-3 row">
+    <div class="row mb-3">
       <div class="col-md-4">
-        <input type="text" id="filterName" class="form-control" placeholder="氏名で絞り込み">
+        <input list="nameList" type="text" id="filterName" class="form-control" placeholder="氏名で絞り込み">
+        <datalist id="nameList">
+          <option value="佐藤">
+          <option value="鈴木">
+          <option value="田中">
+        </datalist>
       </div>
       <div class="col-md-4">
-        <input type="text" id="filterID" class="form-control" placeholder="従業員IDで絞り込み">
+        <input list="idList" type="text" id="filterID" class="form-control" placeholder="従業員IDで絞り込み">
+        <datalist id="idList">
+          <option value="001">
+          <option value="002">
+          <option value="003">
+        </datalist>
       </div>
     </div>
 
