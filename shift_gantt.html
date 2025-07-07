@@ -28,8 +28,18 @@
       border: 1px solid #ddd;
       height: 40px;
       margin-top: 4px;
-      background-image: linear-gradient(to right, #f9f9f9 1px, transparent 1px);
-      background-size: 25px 100%;
+      background-color: #fff;
+    }
+    .grid-line {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      width: 1px;
+      background-color: #eee;
+    }
+    .grid-line.hour {
+      background-color: #999;
+      width: 2px;
     }
     .time-labels {
       display: flex;
@@ -37,6 +47,8 @@
       font-size: 10px;
       color: #555;
       margin-bottom: 0.5rem;
+      position: relative;
+      width: 780px;
     }
   </style>
 </head>
@@ -44,7 +56,10 @@
   <h2>2025年7月 ガントチャート式シフト表</h2>
 
   <div class="time-labels">
-    <span>09:00</span><span>12:00</span><span>15:00</span><span>18:00</span><span>21:00</span><span>22:00</span>
+    <span>09:00</span><span>10:00</span><span>11:00</span><span>12:00</span>
+    <span>13:00</span><span>14:00</span><span>15:00</span><span>16:00</span>
+    <span>17:00</span><span>18:00</span><span>19:00</span><span>20:00</span>
+    <span>21:00</span><span>22:00</span>
   </div>
 
   <div id="ganttArea"></div>
@@ -72,7 +87,18 @@
 
       const container = document.createElement('div');
       container.className = 'gantt-container';
+      container.style.width = ((maxTime - baseTime) * scale) + 'px';
 
+      // Add grid lines
+      for (let t = baseTime; t <= maxTime; t += 15) {
+        const line = document.createElement('div');
+        line.className = 'grid-line';
+        if (t % 60 === 0) line.classList.add('hour');
+        line.style.left = ((t - baseTime) * scale) + 'px';
+        container.appendChild(line);
+      }
+
+      // Add bar
       const start = toMinutes(item.start);
       const end = toMinutes(item.end);
       const left = (start - baseTime) * scale;
