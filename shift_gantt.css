@@ -1,7 +1,7 @@
-
 body { padding: 1rem; font-size: 13px; }
 .gantt-wrapper { overflow: auto; max-height: 90vh; position: relative; border: 1px solid #ccc; }
 .gantt-table { border-collapse: collapse; width: max-content; min-width: 100%; table-layout: fixed; }
+
 thead th, tbody td {
   border: 1px solid #ccc;
   padding: 0.2rem 0.3rem;
@@ -10,65 +10,24 @@ thead th, tbody td {
   white-space: nowrap;
   background: #fff;
 }
+
 thead th.sticky { position: sticky; top: 0; background: #f0f0f0; z-index: 5; }
-thead th.fixed-col, tbody td.fixed-col {
-  position: sticky; left: 0; width: 160px; z-index: 8; background: #fff; border-right: 1px solid #ccc;
+
+thead th.fixed-col, tbody td.fixed-col   { position: sticky; left:   0; width:160px; z-index: 8; background:#fff; border-right:1px solid #ccc; }
+thead th.fixed-col-2, tbody td.fixed-col-2 { position: sticky; left: 160px; width: 70px; z-index: 8; background:#fff; border-right:1px solid #ccc; }
+thead th.fixed-col-3, tbody td.fixed-col-3 { position: sticky; left: 230px; width: 70px; z-index: 8; background:#fff; border-right:1px solid #ccc; }
+
+.time-cell { width: 60px; }      /* 1時間 = 60px */
+.row       { position: relative; }
+
+.row-bar{
+  position:absolute; top:6px; height:20px; border-radius:4px;
+  padding:0 4px; color:#fff; font-size:11px; display:flex;
+  align-items:center; justify-content:center; white-space:nowrap;
 }
-thead th.fixed-col-2, tbody td.fixed-col-2 {
-  position: sticky; left: 160px; width: 70px; background: #fff; z-index: 8; border-right: 1px solid #ccc;
-}
-thead th.fixed-col-3, tbody td.fixed-col-3 {
-  position: sticky; left: 230px; width: 70px; background: #fff; z-index: 8; border-right: 1px solid #ccc;
-}
-.gantt-cell {
-  position: relative;
-  height: 32px;
-  background: #fff;
-}
-.grid-line {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  width: 1px;
-  background-color: #eee;
-}
-.grid-line.hour {
-  background-color: #999;
-  width: 2px;
-}
-.gantt-bar {
-  position: absolute;
-  height: 20px;
-  color: white;
-  text-align: center;
-  font-size: 11px;
-  border-radius: 4px;
-  padding: 0 4px;
-  top: 6px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  white-space: nowrap;
-}
-.gantt-bar:hover::after {
-  content: attr(data-tooltip);
-  position: absolute;
-  top: -26px;
-  left: 50%;
-  transform: translateX(-50%);
-  background: rgba(0,0,0,0.8);
-  color: #fff;
-  padding: 4px 6px;
-  border-radius: 4px;
-  font-size: 11px;
-  white-space: nowrap;
-  z-index: 10;
-}
-.legend-box {
-  display: inline-block;
-  width: 12px;
-  height: 12px;
-  margin-right: 4px;
-  border-radius: 2px;
-  vertical-align: middle;
+.row:hover .row-bar{ filter: brightness(1.1); }
+
+.legend-box{
+  display:inline-block; width:12px; height:12px;
+  margin-right:4px; border-radius:2px; vertical-align:middle;
 }
