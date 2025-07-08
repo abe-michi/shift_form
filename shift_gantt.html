@@ -3,39 +3,25 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>2025年7月 ガントチャート式シフト表</title>
+  <title>シフトガントチャート</title>
   <link rel="stylesheet" href="shift_gantt.css" />
 </head>
 <body>
-  <h1>2025年7月 ガントチャート式シフト表</h1>
-  <label for="date-select">表示日：</label>
-  <select id="date-select">
-    <option value="7/1">7/1</option>
-  </select>
+  <h2>2025年7月 ガントチャート式シフト表</h2>
+  <label for="date">表示日：
+    <select id="date">
+      <option value="7/1">7/1</option>
+    </select>
+  </label>
 
-  <div class="legend">
-    <span class="legend-item tanaka">田中</span>
-    <span class="legend-item yamada">山田</span>
-    <span class="legend-item ito">伊藤</span>
-    <span class="legend-item nakamura">中村</span>
-    <span class="legend-item kato">加藤</span>
-    <span class="legend-item default">その他（未設定）</span>
+  <div class="gantt-header">
+    <div class="fixed-col">氏名</div>
+    <div class="fixed-col">開始</div>
+    <div class="fixed-col">終了</div>
+    <div class="gantt-grid time-header" id="timeHeader"></div>
   </div>
 
-  <div class="gantt-container">
-    <div class="gantt-header">
-      <div class="label-cell">氏名</div>
-      <div class="label-cell">開始</div>
-      <div class="label-cell">終了</div>
-      <div class="gantt-grid time-header">
-        <!-- 時刻ヘッダ -->
-      </div>
-    </div>
-    <div class="gantt-body" id="gantt-body">
-      <!-- JSでシフト行を挿入 -->
-    </div>
-  </div>
-
+  <div id="ganttBody" class="gantt-body"></div>
   <script src="shift_gantt.js"></script>
 </body>
 </html>
