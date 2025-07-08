@@ -29,7 +29,7 @@
     .gantt-cell {
       position: relative;
       height: 32px;
-      width: 1020px;
+      width: 4080px;
     }
     .grid-line {
       position: absolute;
@@ -38,10 +38,7 @@
       width: 1px;
       background-color: #eee;
     }
-    .grid-line.hour {
-      background-color: #999;
-      width: 2px;
-    }
+    .grid-line.hour { background-color: #999; width: 2px; }
     .gantt-bar {
       position: absolute;
       height: 20px;
@@ -102,7 +99,7 @@
     ];
     const baseTime = 10 * 60;
     const maxTime = 27 * 60;
-    const scale = 10;
+    const scale = 4;  // 1分あたりのピクセル数
     const ganttHead = document.getElementById("ganttHead");
     const ganttBody = document.getElementById("ganttBody");
     const dateSelect = document.getElementById("dateSelect");
@@ -116,8 +113,7 @@
       ganttHead.innerHTML = "";
       ganttBody.innerHTML = "";
       const headRow = document.createElement("tr");
-      const headers = ["氏名", "開始", "終了"];
-      headers.forEach((label, i) => {
+      ["氏名", "開始", "終了"].forEach((label, i) => {
         const th = document.createElement("th");
         th.textContent = label;
         th.classList.add("sticky");
@@ -167,6 +163,7 @@
         const end = toMinutes(item.end);
         const left = (start - baseTime) * scale;
         const width = (end - start) * scale;
+
         const bar = document.createElement("div");
         bar.className = "gantt-bar";
         bar.style.left = left + "px";
@@ -175,7 +172,6 @@
         bar.textContent = item.name;
         bar.setAttribute("data-tooltip", `${item.name}：${item.start}〜${item.end}`);
         container.appendChild(bar);
-
         tdGantt.appendChild(container);
         tr.appendChild(tdName);
         tr.appendChild(tdStart);
