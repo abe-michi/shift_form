@@ -19,11 +19,12 @@
       border-collapse: collapse;
       width: max-content;
       min-width: 100%;
+      table-layout: fixed;
     }
 
     thead th, tbody td {
       border: 1px solid #ccc;
-      padding: 0.3rem;
+      padding: 0.2rem 0.3rem;
       font-size: 12px;
       text-align: center;
       white-space: nowrap;
@@ -36,39 +37,30 @@
       z-index: 5;
     }
 
+    thead th.fixed-col,
     tbody td.fixed-col {
       position: sticky;
       left: 0;
+      width: 160px;
+      z-index: 6;
       background: #f9f9f9;
-      z-index: 3;
     }
 
+    thead th.fixed-col-2,
     tbody td.fixed-col-2 {
       position: sticky;
-      left: 80px;
+      left: 160px;
+      width: 70px;
       background: #f9f9f9;
-      z-index: 3;
+      z-index: 6;
     }
 
+    thead th.fixed-col-3,
     tbody td.fixed-col-3 {
       position: sticky;
-      left: 160px;
+      left: 230px;
+      width: 70px;
       background: #f9f9f9;
-      z-index: 3;
-    }
-
-    thead th.fixed-col {
-      left: 0;
-      z-index: 6;
-    }
-
-    thead th.fixed-col-2 {
-      left: 80px;
-      z-index: 6;
-    }
-
-    thead th.fixed-col-3 {
-      left: 160px;
       z-index: 6;
     }
 
