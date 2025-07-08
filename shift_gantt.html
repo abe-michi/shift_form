@@ -1,29 +1,41 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-<meta charset="UTF-8">
-<title>シフトガントチャート</title>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link href="shift_gantt.css" rel="stylesheet">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>2025年7月 ガントチャート式シフト表</title>
+  <link rel="stylesheet" href="shift_gantt.css" />
 </head>
 <body>
-<h2>2025年7月 ガントチャート式シフト表</h2>
-<label>表示日：
-<select id="dateSelect">
-  <option value="7/1">7/1</option>
-</select>
-</label>
-<div class="gantt-wrapper">
-<table class="gantt-table">
-<thead><tr>
-  <th class="fixed-col">氏名</th>
-  <th class="fixed-col-2">開始</th>
-  <th class="fixed-col-3">終了</th>
-  <th class='time-cell'>10:00</th><th class='time-cell'></th><th class='time-cell'></th><th class='time-cell'></th><th class='time-cell'>11:00</th><th class='time-cell'></th><th class='time-cell'></th><th class='time-cell'></th><th class='time-cell'>12:00</th><th class='time-cell'></th><th class='time-cell'></th><th class='time-cell'></th><th class='time-cell'>13:00</th><th class='time-cell'></th><th class='time-cell'></th><th class='time-cell'></th><th class='time-cell'>14:00</th><th class='time-cell'></th><th class='time-cell'></th><th class='time-cell'></th><th class='time-cell'>15:00</th><th class='time-cell'></th><th class='time-cell'></th><th class='time-cell'></th><th class='time-cell'>16:00</th><th class='time-cell'></th><th class='time-cell'></th><th class='time-cell'></th><th class='time-cell'>17:00</th><th class='time-cell'></th><th class='time-cell'></th><th class='time-cell'></th><th class='time-cell'>18:00</th><th class='time-cell'></th><th class='time-cell'></th><th class='time-cell'></th><th class='time-cell'>19:00</th><th class='time-cell'></th><th class='time-cell'></th><th class='time-cell'></th><th class='time-cell'>20:00</th><th class='time-cell'></th><th class='time-cell'></th><th class='time-cell'></th><th class='time-cell'>21:00</th><th class='time-cell'></th><th class='time-cell'></th><th class='time-cell'></th><th class='time-cell'>22:00</th><th class='time-cell'></th><th class='time-cell'></th><th class='time-cell'></th><th class='time-cell'>23:00</th><th class='time-cell'></th><th class='time-cell'></th><th class='time-cell'></th><th class='time-cell'>24:00</th><th class='time-cell'></th><th class='time-cell'></th><th class='time-cell'></th><th class='time-cell'>25:00</th><th class='time-cell'></th><th class='time-cell'></th><th class='time-cell'></th>
-</tr></thead>
-<tbody id="gBody"></tbody>
-</table>
-</div>
-<script src="shift_gantt.js"></script>
+  <h1>2025年7月 ガントチャート式シフト表</h1>
+  <label for="date-select">表示日：</label>
+  <select id="date-select">
+    <option value="7/1">7/1</option>
+  </select>
+
+  <div class="legend">
+    <span class="legend-item tanaka">田中</span>
+    <span class="legend-item yamada">山田</span>
+    <span class="legend-item ito">伊藤</span>
+    <span class="legend-item nakamura">中村</span>
+    <span class="legend-item kato">加藤</span>
+    <span class="legend-item default">その他（未設定）</span>
+  </div>
+
+  <div class="gantt-container">
+    <div class="gantt-header">
+      <div class="label-cell">氏名</div>
+      <div class="label-cell">開始</div>
+      <div class="label-cell">終了</div>
+      <div class="gantt-grid time-header">
+        <!-- 時刻ヘッダ -->
+      </div>
+    </div>
+    <div class="gantt-body" id="gantt-body">
+      <!-- JSでシフト行を挿入 -->
+    </div>
+  </div>
+
+  <script src="shift_gantt.js"></script>
 </body>
 </html>
