@@ -1,42 +1,32 @@
 
+:root {
+  --cell-w: 15px;
+  --hour-border: #888;
+  --quarter-border: #ccc;
+}
+@media (max-width: 767px) {
+  :root { --cell-w: 10px; }
+}
 body {
-  font-family: sans-serif;
-  margin: 0;
-  padding: 1em;
-  background: #fff;
+  font-family: Arial, sans-serif;
+  padding: 1rem;
+  font-size: 12px;
 }
-h2 {
-  margin-bottom: 0.5em;
-}
-.control {
-  margin: 0.5em 0;
-}
-.legend {
-  margin: 0.5em 0;
-  font-size: 0.9em;
-}
-.legend-box {
-  display: inline-block;
-  width: 1em;
-  height: 1em;
-  margin: 0 0.3em;
-  vertical-align: middle;
-}
-.gantt-wrapper {
-  overflow-x: auto;
-  border-top: 1px solid #ccc;
-}
+h2 { margin-bottom: 0.5rem; }
+.gantt-wrapper { overflow-x: auto; border: 1px solid #ccc; max-height: 85vh; }
 .gantt-table {
   border-collapse: collapse;
   width: max-content;
   min-width: 100%;
+  table-layout: fixed;
 }
 th, td {
   border: none;
-  padding: 4px;
+  padding: 2px 4px;
   white-space: nowrap;
   text-align: center;
-  height: 28px;
+  font-size: 11px;
+  height: 24px;
 }
 thead th {
   position: sticky;
@@ -49,36 +39,48 @@ thead th {
   left: 0;
   background: #fff;
   z-index: 3;
-  min-width: 70px;
-  max-width: 100px;
+  min-width: 90px;
 }
 .fixed-col-2 {
   position: sticky;
-  left: 70px;
+  left: 90px;
   background: #fff;
   z-index: 3;
-  min-width: 60px;
+  min-width: 70px;
 }
 .fixed-col-3 {
   position: sticky;
-  left: 130px;
+  left: 160px;
   background: #fff;
   z-index: 3;
-  min-width: 60px;
+  min-width: 70px;
+}
+.time-cell {
+  width: var(--cell-w);
+  position: relative;
+}
+.time-cell::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  border-right: 1px solid var(--quarter-border);
+}
+.time-cell.hour-mark::after {
+  border-right: 2px solid var(--hour-border);
 }
 .row-bar {
   position: absolute;
-  height: 26px;
+  top: 1px;
+  height: 22px;
+  border-radius: 3px;
   color: #fff;
-  font-size: 0.8em;
+  font-size: 10px;
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 4px;
+  padding: 0 4px;
+  white-space: nowrap;
 }
-td.hour-mark {
-  border-right: 2px solid #888;
-}
-tbody tr:nth-child(even) {
-  background: #f9f9f9;
-}
+tbody tr:nth-child(even) { background: #fafafa; }
