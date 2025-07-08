@@ -1,22 +1,20 @@
+
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="UTF-8">
-  <title>ガントチャート式シフト表</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-  <link href="shift_gantt.css" rel="stylesheet">
+<meta charset="UTF-8">
+<title>ガントチャート式シフト表</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="shift_gantt.css" rel="stylesheet">
 </head>
 <body>
 <h2 style="font-size:1.2rem;">2025年7月 ガントチャート式シフト表</h2>
-
 <div class="mb-2">表示日：
   <select id="dateSelect" class="form-select d-inline-block w-auto">
-    <option value="7/1">7/1</option>
-    <option value="7/2">7/2</option>
+    <option value="7/1">7/1</option><option value="7/2">7/2</option>
   </select>
 </div>
-
 <div class="mb-2">
   <span class="legend-box" style="background:#007bff;"></span> 田中　
   <span class="legend-box" style="background:#28a745;"></span> 山田　
@@ -25,7 +23,6 @@
   <span class="legend-box" style="background:#17a2b8;"></span> 加藤　
   <span class="legend-box" style="background:#888;"></span> その他（未設定）
 </div>
-
 <div class="gantt-wrapper">
 <table class="gantt-table">
   <thead>
@@ -33,43 +30,16 @@
       <th class="sticky fixed-col">氏名</th>
       <th class="sticky fixed-col-2">開始</th>
       <th class="sticky fixed-col-3">終了</th>
-      <!-- 10:00〜26:00 まで 1h 列を生成 -->
-      <!-- 1時間 = 60px と固定。ズレが出ません -->
-      <!-- ↓ 17列 -->
-      <th class="sticky time-cell">10:00</th><th class="sticky time-cell">11:00</th>
-      <th class="sticky time-cell">12:00</th><th class="sticky time-cell">13:00</th>
-      <th class="sticky time-cell">14:00</th><th class="sticky time-cell">15:00</th>
-      <th class="sticky time-cell">16:00</th><th class="sticky time-cell">17:00</th>
-      <th class="sticky time-cell">18:00</th><th class="sticky time-cell">19:00</th>
-      <th class="sticky time-cell">20:00</th><th class="sticky time-cell">21:00</th>
-      <th class="sticky time-cell">22:00</th><th class="sticky time-cell">23:00</th>
-      <th class="sticky time-cell">24:00</th><th class="sticky time-cell">25:00</th>
-      <th class="sticky time-cell">26:00</th>
+      <th class="sticky time-cell">10:00</th><th class="sticky time-cell">11:00</th><th class="sticky time-cell">12:00</th><th class="sticky time-cell">13:00</th><th class="sticky time-cell">14:00</th><th class="sticky time-cell">15:00</th><th class="sticky time-cell">16:00</th><th class="sticky time-cell">17:00</th><th class="sticky time-cell">18:00</th><th class="sticky time-cell">19:00</th><th class="sticky time-cell">20:00</th><th class="sticky time-cell">21:00</th><th class="sticky time-cell">22:00</th><th class="sticky time-cell">23:00</th><th class="sticky time-cell">24:00</th><th class="sticky time-cell">25:00</th><th class="sticky time-cell">26:00</th>
     </tr>
   </thead>
   <tbody id="gBody"></tbody>
 </table>
 </div>
-
 <script>
-const baseMin = 10*60, hours = 17;        // 10:00~27:00
-const data = [
-  {id:'001',name:'佐藤',date:'7/1',start:'10:00',end:'18:00',color:''},
-  {id:'002',name:'田中',date:'7/1',start:'13:00',end:'20:00',color:'#007bff'},
-  {id:'003',name:'鈴木',date:'7/1',start:'14:00',end:'22:00',color:''},
-  {id:'004',name:'山田',date:'7/1',start:'15:00',end:'23:00',color:'#28a745'},
-  {id:'006',name:'伊藤',date:'7/1',start:'09:00',end:'17:00',color:'#dc3545'},
-  {id:'001',name:'佐藤',date:'7/2',start:'13:00',end:'17:00',color:''},
-  {id:'002',name:'田中',date:'7/2',start:'11:00',end:'19:00',color:'#007bff'},
-  {id:'003',name:'鈴木',date:'7/2',start:'10:00',end:'14:00',color:''},
-  {id:'004',name:'山田',date:'7/2',start:'15:00',end:'22:00',color:'#28a745'},
-  {id:'005',name:'高橋',date:'7/2',start:'12:00',end:'18:00',color:''},
-  {id:'006',name:'伊藤',date:'7/2',start:'10:30',end:'15:30',color:'#dc3545'},
-  {id:'007',name:'渡辺',date:'7/2',start:'16:00',end:'24:00',color:''},
-  {id:'008',name:'中村',date:'7/2',start:'17:00',end:'26:00',color:'#ffc107'},
-  {id:'009',name:'小林',date:'7/2',start:'11:30',end:'16:00',color:''},
-  {id:'010',name:'加藤',date:'7/2',start:'13:00',end:'20:00',color:'#17a2b8'}
-];
+const data = [{"id": "001", "name": "\u4f50\u85e4", "date": "7/1", "start": "10:00", "end": "18:00", "color": ""}, {"id": "002", "name": "\u7530\u4e2d", "date": "7/1", "start": "13:00", "end": "20:00", "color": "#007bff"}, {"id": "003", "name": "\u9234\u6728", "date": "7/1", "start": "14:00", "end": "22:00", "color": ""}, {"id": "004", "name": "\u5c71\u7530", "date": "7/1", "start": "15:00", "end": "23:00", "color": "#28a745"}, {"id": "006", "name": "\u4f0a\u85e4", "date": "7/1", "start": "09:00", "end": "17:00", "color": "#dc3545"}, {"id": "001", "name": "\u4f50\u85e4", "date": "7/2", "start": "13:00", "end": "17:00", "color": ""}, {"id": "002", "name": "\u7530\u4e2d", "date": "7/2", "start": "11:00", "end": "19:00", "color": "#007bff"}, {"id": "003", "name": "\u9234\u6728", "date": "7/2", "start": "10:00", "end": "14:00", "color": ""}, {"id": "004", "name": "\u5c71\u7530", "date": "7/2", "start": "15:00", "end": "22:00", "color": "#28a745"}, {"id": "005", "name": "\u9ad8\u6a4b", "date": "7/2", "start": "12:00", "end": "18:00", "color": ""}, {"id": "006", "name": "\u4f0a\u85e4", "date": "7/2", "start": "10:30", "end": "15:30", "color": "#dc3545"}, {"id": "007", "name": "\u6e21\u8fba", "date": "7/2", "start": "16:00", "end": "24:00", "color": ""}, {"id": "008", "name": "\u4e2d\u6751", "date": "7/2", "start": "17:00", "end": "26:00", "color": "#ffc107"}, {"id": "009", "name": "\u5c0f\u6797", "date": "7/2", "start": "11:30", "end": "16:00", "color": ""}, {"id": "010", "name": "\u52a0\u85e4", "date": "7/2", "start": "13:00", "end": "20:00", "color": "#17a2b8"}];
+const baseMin = 10*60;
+const hours = 17;
 
 function toMin(t){const [h,m]=t.split(':').map(Number);return h*60+m;}
 function render(day){
@@ -78,20 +48,20 @@ function render(day){
       .sort((a,b)=>a.id.localeCompare(b.id)||toMin(a.start)-toMin(b.start))
       .forEach(r=>{
         const tr=document.createElement('tr'); tr.className='row';
-        tr.innerHTML=`
-          <td class="fixed-col">${r.name}</td>
-          <td class="fixed-col-2">${r.start}</td>
-          <td class="fixed-col-3">${r.end}</td>`;
+        tr.innerHTML=`<td class='fixed-col'>${r.name}</td>
+                      <td class='fixed-col-2'>${r.start}</td>
+                      <td class='fixed-col-3'>${r.end}</td>`;
         for(let i=0;i<hours;i++) tr.appendChild(document.createElement('td'));
-
         const bar=document.createElement('div');
         bar.className='row-bar';
         bar.style.left = (toMin(r.start)-baseMin)+'px';
         bar.style.width= (toMin(r.end)-toMin(r.start))+'px';
         bar.style.background = r.color||'#888';
         bar.textContent = r.name;
-        bar.dataset.tooltip=`${r.name}：${r.start}〜${r.end}`;
-        tr.appendChild(bar);
+        bar.title = `${r.name}：${r.start}〜${r.end}`;
+        tr.children[3].style.position='relative';
+        tr.children[3].style.overflow='visible';
+        tr.children[3].appendChild(bar);
         tbody.appendChild(tr);
       });
 }
