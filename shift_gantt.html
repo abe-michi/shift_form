@@ -5,73 +5,7 @@
   <title>ガントチャート式シフト表</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-  <style>
-    body { padding: 1rem; font-size: 13px; }
-    .gantt-wrapper { overflow: auto; max-height: 90vh; position: relative; border: 1px solid #ccc; }
-    .gantt-table { border-collapse: collapse; width: max-content; min-width: 100%; table-layout: fixed; }
-    thead th, tbody td {
-      border: 1px solid #ccc;
-      padding: 0.2rem 0.3rem;
-      font-size: 12px;
-      text-align: center;
-      white-space: nowrap;
-      background: #fff;
-    }
-    thead th.sticky { position: sticky; top: 0; background: #f0f0f0; z-index: 5; }
-    thead th.fixed-col, tbody td.fixed-col {
-      position: sticky; left: 0; width: 160px; z-index: 7; background: #f9f9f9; border-right: 1px solid #ccc;
-    }
-    thead th.fixed-col-2, tbody td.fixed-col-2 {
-      position: sticky; left: 160px; width: 70px; background: #f9f9f9; z-index: 7; border-right: 1px solid #ccc;
-    }
-    thead th.fixed-col-3, tbody td.fixed-col-3 {
-      position: sticky; left: 230px; width: 70px; background: #f9f9f9; z-index: 7; border-right: 1px solid #ccc;
-    }
-    .gantt-cell {
-      position: relative;
-      height: 32px;
-      width: 1020px;
-    }
-    .grid-line {
-      position: absolute;
-      top: 0;
-      bottom: 0;
-      width: 1px;
-      background-color: #eee;
-    }
-    .grid-line.hour {
-      background-color: #999;
-      width: 2px;
-    }
-    .gantt-bar {
-      position: absolute;
-      height: 20px;
-      color: white;
-      text-align: center;
-      font-size: 11px;
-      border-radius: 4px;
-      padding: 0 4px;
-      top: 6px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      white-space: nowrap;
-    }
-    .gantt-bar:hover::after {
-      content: attr(data-tooltip);
-      position: absolute;
-      top: -26px;
-      left: 50%;
-      transform: translateX(-50%);
-      background: rgba(0,0,0,0.8);
-      color: #fff;
-      padding: 4px 6px;
-      border-radius: 4px;
-      font-size: 11px;
-      white-space: nowrap;
-      z-index: 10;
-    }
-  </style>
+  <link href="shift_gantt.css" rel="stylesheet">
 </head>
 <body>
   <h2 style="font-size: 1.2rem;">2025年7月 ガントチャート式シフト表</h2>
@@ -82,6 +16,14 @@
       <option value="7/2">7/2</option>
     </select>
   </div>
+  <div class="mb-2">
+    <span class="legend-box" style="background:#007bff;"></span> 田中　
+    <span class="legend-box" style="background:#28a745;"></span> 山田　
+    <span class="legend-box" style="background:#dc3545;"></span> 伊藤　
+    <span class="legend-box" style="background:#ffc107;"></span> 中村　
+    <span class="legend-box" style="background:#17a2b8;"></span> 加藤　
+    <span class="legend-box" style="background:#888;"></span> その他（未設定）
+  </div>
   <div class="gantt-wrapper">
     <table class="gantt-table">
       <thead id="ganttHead"></thead>
@@ -90,6 +32,13 @@
   </div>
   <script>
     const shiftData = [
+      // 7/1 sample
+      { id: "001", name: "佐藤", date: "7/1", start: "10:00", end: "18:00", color: "" },
+      { id: "002", name: "田中", date: "7/1", start: "13:00", end: "20:00", color: "#007bff" },
+      { id: "003", name: "鈴木", date: "7/1", start: "14:00", end: "22:00", color: "" },
+      { id: "004", name: "山田", date: "7/1", start: "15:00", end: "23:00", color: "#28a745" },
+      { id: "006", name: "伊藤", date: "7/1", start: "09:00", end: "17:00", color: "#dc3545" },
+      // 7/2 same as before
       { id: "001", name: "佐藤", date: "7/2", start: "13:00", end: "17:00", color: "" },
       { id: "002", name: "田中", date: "7/2", start: "11:00", end: "19:00", color: "#007bff" },
       { id: "003", name: "鈴木", date: "7/2", start: "10:00", end: "14:00", color: "" },
@@ -154,6 +103,7 @@
         tdGantt.colSpan = ((maxTime - baseTime) / 60);
         const container = document.createElement("div");
         container.className = "gantt-cell";
+        container.style.width = ((maxTime - baseTime) * scale) + "px";
 
         for (let t = baseTime + 15; t < maxTime; t += 15) {
           const line = document.createElement("div");
