@@ -15,21 +15,22 @@
       font-size: 12px;
       text-align: center;
       white-space: nowrap;
+      background: #fff;
     }
     thead th.sticky { position: sticky; top: 0; background: #f0f0f0; z-index: 5; }
     thead th.fixed-col, tbody td.fixed-col {
-      position: sticky; left: 0; width: 160px; z-index: 6; background: #f9f9f9;
+      position: sticky; left: 0; width: 160px; z-index: 7; background: #f9f9f9; border-right: 1px solid #ccc;
     }
     thead th.fixed-col-2, tbody td.fixed-col-2 {
-      position: sticky; left: 160px; width: 70px; background: #f9f9f9; z-index: 6;
+      position: sticky; left: 160px; width: 70px; background: #f9f9f9; z-index: 7; border-right: 1px solid #ccc;
     }
     thead th.fixed-col-3, tbody td.fixed-col-3 {
-      position: sticky; left: 230px; width: 70px; background: #f9f9f9; z-index: 6;
+      position: sticky; left: 230px; width: 70px; background: #f9f9f9; z-index: 7; border-right: 1px solid #ccc;
     }
     .gantt-cell {
       position: relative;
       height: 32px;
-      width: 4080px;
+      width: 1020px;
     }
     .grid-line {
       position: absolute;
@@ -38,7 +39,10 @@
       width: 1px;
       background-color: #eee;
     }
-    .grid-line.hour { background-color: #999; width: 2px; }
+    .grid-line.hour {
+      background-color: #999;
+      width: 2px;
+    }
     .gantt-bar {
       position: absolute;
       height: 20px;
@@ -99,7 +103,7 @@
     ];
     const baseTime = 10 * 60;
     const maxTime = 27 * 60;
-    const scale = 1;  // 1分あたりのピクセル数
+    const scale = 1;
     const ganttHead = document.getElementById("ganttHead");
     const ganttBody = document.getElementById("ganttBody");
     const dateSelect = document.getElementById("dateSelect");
@@ -122,7 +126,7 @@
         if (i === 2) th.classList.add("fixed-col-3");
         headRow.appendChild(th);
       });
-      for (let t = baseTime; t < maxTime; t += 60) {
+      for (let t = baseTime + 60; t < maxTime; t += 60) {
         const th = document.createElement("th");
         const h = Math.floor(t / 60);
         th.textContent = `${h}:00`;
@@ -151,7 +155,7 @@
         const container = document.createElement("div");
         container.className = "gantt-cell";
 
-        for (let t = baseTime; t < maxTime; t += 15) {
+        for (let t = baseTime + 15; t < maxTime; t += 15) {
           const line = document.createElement("div");
           line.className = "grid-line";
           if (t % 60 === 0) line.classList.add("hour");
