@@ -1,49 +1,84 @@
 
-body { padding: 1rem; font-size: 13px; }
-.gantt-wrapper { overflow: auto; max-height: 90vh; position: relative; border: 1px solid #ccc; }
-.gantt-table { border-collapse: collapse; width: max-content; min-width: 100%; table-layout: fixed; }
-
-thead th, tbody td {
-  border: 1px solid #ccc;
-  padding: 0.2rem 0.3rem;
-  font-size: 12px;
-  text-align: center;
-  white-space: nowrap;
+body {
+  font-family: sans-serif;
+  margin: 0;
+  padding: 1em;
   background: #fff;
 }
-
-thead th.sticky { position: sticky; top: 0; background: #f0f0f0; z-index: 5; }
-
-thead th.fixed-col, tbody td.fixed-col   { position: sticky; left:   0; width:160px; z-index: 8; background:#fff; border-right:1px solid #ccc; }
-thead th.fixed-col-2, tbody td.fixed-col-2 { position: sticky; left: 160px; width: 70px; z-index: 8; background:#fff; border-right:1px solid #ccc; }
-thead th.fixed-col-3, tbody td.fixed-col-3 { position: sticky; left: 230px; width: 70px; z-index: 8; background:#fff; border-right:1px solid #ccc; }
-
-.time-cell        { width: 60px; }
-.time-cell:first-child { overflow: visible; position: relative; }
-
-.row              { position: relative; }
-
+h2 {
+  margin-bottom: 0.5em;
+}
+.control {
+  margin: 0.5em 0;
+}
+.legend {
+  margin: 0.5em 0;
+  font-size: 0.9em;
+}
+.legend-box {
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  margin: 0 0.3em;
+  vertical-align: middle;
+}
+.gantt-wrapper {
+  overflow-x: auto;
+  border-top: 1px solid #ccc;
+}
+.gantt-table {
+  border-collapse: collapse;
+  width: max-content;
+  min-width: 100%;
+}
+th, td {
+  border: 1px solid #ccc;
+  padding: 4px;
+  white-space: nowrap;
+  text-align: center;
+  height: 28px;
+}
+thead th {
+  position: sticky;
+  top: 0;
+  background: #f0f0f0;
+  z-index: 2;
+}
+.fixed-col {
+  position: sticky;
+  left: 0;
+  background: #fff;
+  z-index: 3;
+  min-width: 70px;
+  max-width: 100px;
+}
+.fixed-col-2 {
+  position: sticky;
+  left: 70px;
+  background: #fff;
+  z-index: 3;
+  min-width: 60px;
+}
+.fixed-col-3 {
+  position: sticky;
+  left: 130px;
+  background: #fff;
+  z-index: 3;
+  min-width: 60px;
+}
 .row-bar {
   position: absolute;
-  top: 6px;
-  height: 20px;
-  border-radius: 4px;
+  height: 26px;
   color: #fff;
-  font-size: 11px;
-  padding: 0 4px;
+  font-size: 0.8em;
   display: flex;
   align-items: center;
   justify-content: center;
-  white-space: nowrap;
+  border-radius: 4px;
 }
-
-.row:hover .row-bar { filter: brightness(1.1); }
-
-.legend-box {
-  display: inline-block;
-  width: 12px;
-  height: 12px;
-  margin-right: 4px;
-  border-radius: 2px;
-  vertical-align: middle;
+td.hour-mark {
+  border-right: 2px solid #888;
+}
+tbody tr:nth-child(even) {
+  background: #f9f9f9;
 }

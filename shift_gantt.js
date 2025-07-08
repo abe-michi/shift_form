@@ -29,7 +29,10 @@ function render(day) {
                         <td class="fixed-col-2">${r.start}</td>
                         <td class="fixed-col-3">${r.end}</td>`;
         for (let i = 0; i < (17 * 4); i++) {
-          tr.appendChild(document.createElement("td"));
+          const td = document.createElement("td");
+          if (i % 4 === 0) td.classList.add("hour-mark");
+
+          tr.appendChild(td);
         }
         const bar = document.createElement("div");
         bar.className = "row-bar";
