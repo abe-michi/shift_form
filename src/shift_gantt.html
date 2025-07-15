@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ガントチャート式シフト表</title>
+  <link rel="stylesheet" href="shift_gantt.css">
+</head>
+<body>
+  <div class="gantt-header">
+    <h1 id="gantt-title">2025年7月 ガントチャート式シフト表</h1>
+
+    <div class="gantt-controls">
+      <label for="view-range">表示範囲:</label>
+      <select id="view-range">
+        <option value="week">週</option>
+        <option value="half">半月</option>
+        <option value="month" selected>月</option>
+      </select>
+
+      <label for="date-select">日付:</label>
+      <select id="date-select">
+        <!-- 日付一覧はJSで埋め込み -->
+      </select>
+    </div>
+
+    <div id="legend">
+      <!-- 凡例（従業員名＋色）を動的に表示 -->
+    </div>
+  </div>
+
+  <div id="gantt-table-container">
+    <table id="gantt-table">
+      <!-- 時刻ヘッダ・従業員行などはJSで描画 -->
+    </table>
+  </div>
+
+  <script src="shift_gantt.js"></script>
+</body>
+</html>
