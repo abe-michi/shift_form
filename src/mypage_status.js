@@ -1,0 +1,1 @@
+/* mypage_status.js placeholder */
