@@ -1,0 +1,1 @@
+document.getElementById('data').innerHTML='<tr><td>山田 太郎</td><td>未提出</td></tr>';

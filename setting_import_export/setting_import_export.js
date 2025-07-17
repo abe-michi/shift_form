@@ -1,0 +1,1 @@
+document.getElementById('export').onclick=function(){alert('エクスポート（モック）')};document.getElementById('import').onchange=function(){document.getElementById('diff').textContent='差分表示（モック）'}

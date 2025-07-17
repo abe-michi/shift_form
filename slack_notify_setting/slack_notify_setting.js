@@ -1,0 +1,1 @@
+document.getElementById('notify').onchange=function(e){document.getElementById('template').disabled=!e.target.checked;}

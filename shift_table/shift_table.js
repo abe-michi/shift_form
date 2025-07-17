@@ -1,0 +1,1 @@
+document.getElementById('csv-export').onclick=function(){alert('CSV出力（モック）')};document.getElementById('shift-data').innerHTML='<tr><td>鈴木 花子</td><td>7/20</td><td>9:00〜18:00</td></tr>';
